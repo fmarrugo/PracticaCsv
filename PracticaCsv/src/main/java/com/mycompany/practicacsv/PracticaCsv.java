@@ -21,7 +21,7 @@ public class PracticaCsv {
     private static final String RUTA = "Datos.csv";
     private static final String SEPARADOR = ",";
 
-    public List<String []> leerFilas() throws IOException{
+    public static List<String []> leerFilas() throws IOException{
         List<String[]> filas = new ArrayList<>();
         if(!new File(RUTA).exists()) return filas;
         
@@ -42,7 +42,7 @@ public class PracticaCsv {
         return filas;
     }
     
-    public String leerTexto() throws IOException{
+    public static String leerTexto() throws IOException{
         if(!new File(RUTA).exists()) return "El archivo Datos.csv no existe todavía";
         
         StringBuilder sb = new StringBuilder();
@@ -61,7 +61,12 @@ public class PracticaCsv {
         return sb.toString();
     }
      
-    public static void main(String[] args) {
-        System.out.println("Hello World!");
+    public static void main(String[] args) {        
+        System.out.println("Leyendo CSV...");
+        try{
+            System.out.println(leerTexto());
+        }catch (IOException e){
+            System.out.println("Fallo por "+ e.getMessage());
+        }
     }
 }
