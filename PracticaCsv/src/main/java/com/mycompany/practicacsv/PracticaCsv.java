@@ -83,10 +83,10 @@ public class PracticaCsv {
         
         try{                      
             int opc = 0;
-            do{
+            do{                
                 System.out.print("Por favor, ingresa tu nombre: ");
                 String nombre = sc.nextLine();
-
+                
                 System.out.print("Por favor, ingresa tu edad: ");
                 int edad = sc.nextInt();
                 sc.nextLine();
@@ -98,6 +98,7 @@ public class PracticaCsv {
                 
                 System.out.println("\nDesea agregar otro estudiante?: \n1) Si \n2) No \nOpción : ");
                 opc = sc.nextInt();
+                sc.nextLine();
                 
             }while(opc == 1);            
             
