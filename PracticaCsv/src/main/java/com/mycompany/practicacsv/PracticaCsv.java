@@ -7,7 +7,9 @@ package com.mycompany.practicacsv;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +22,7 @@ public class PracticaCsv {
     
     private static final String RUTA = "Datos.csv";
     private static final String SEPARADOR = ",";
+    private static final String CABECERA = "nombre,edad,carrera";
 
     public static List<String []> leerFilas() throws IOException{
         List<String[]> filas = new ArrayList<>();
@@ -40,6 +43,18 @@ public class PracticaCsv {
         }
         
         return filas;
+    }
+    
+    public void escribir(String nombre, int edad, String carrera) throws IOException{
+        boolean esNuevo = !new File(RUTA).exists();
+        
+        try(FileWriter fw = new FileWriter(RUTA, StandardCharsets.UTF_8, true); PrintWriter pw = new PrintWriter(fw)){
+            if(esNuevo){
+                pw.println(CABECERA);
+            }
+            
+            pw.println(nombre + SEPARADOR + edad + SEPARADOR + carrera);
+        }
     }
     
     public static String leerTexto() throws IOException{
@@ -70,3 +85,4 @@ public class PracticaCsv {
         }
     }
 }
+//hola        
