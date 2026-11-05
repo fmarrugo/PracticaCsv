@@ -13,6 +13,7 @@ import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  *
@@ -45,7 +46,7 @@ public class PracticaCsv {
         return filas;
     }
     
-    public void escribir(String nombre, int edad, String carrera) throws IOException{
+    public static void escribir(String nombre, int edad, String carrera) throws IOException{
         boolean esNuevo = !new File(RUTA).exists();
         
         try(FileWriter fw = new FileWriter(RUTA, StandardCharsets.UTF_8, true); PrintWriter pw = new PrintWriter(fw)){
@@ -77,12 +78,43 @@ public class PracticaCsv {
     }
      
     public static void main(String[] args) {        
+                
+        Scanner sc = new Scanner(System.in);
+        
+        try{                      
+            int opc = 0;
+            do{
+                System.out.print("Por favor, ingresa tu nombre: ");
+                String nombre = sc.nextLine();
+
+                System.out.print("Por favor, ingresa tu edad: ");
+                int edad = sc.nextInt();
+                sc.nextLine();
+
+                System.out.print("Por favor, ingresa tu carrera: ");
+                String carrera = sc.nextLine();
+                
+                escribir(nombre, edad, carrera);
+                
+                System.out.println("\nDesea agregar otro estudiante?: \n1) Si \n2) No \nOpción : ");
+                opc = sc.nextInt();
+                
+            }while(opc == 1);            
+            
+        }catch(IOException ex){            
+            System.out.println("Fallo por "+ ex.getMessage());
+        }finally{
+            sc.close();
+        }
+        
+        
         System.out.println("Leyendo CSV...");
         try{
             System.out.println(leerTexto());
         }catch (IOException e){
             System.out.println("Fallo por "+ e.getMessage());
         }
+        
     }
 }
 //hola        
